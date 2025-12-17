@@ -39,9 +39,9 @@ The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analy
 4. Start the server: `node server.js` (Runs on port 5174.0).
 
 ### 2. Frontend Setup
-1. Navigate to the folder: `cd FrontEnd`
-2. Install dependencies: `npm install`
-3. Run the application: `npm run dev` (Usually runs on port 5173.0).
+1. Open a **new** terminal in the main project folder (`Trivisum`).
+2. Install dependencies (since package.json is here): `npm install`
+3. Run the application: `npm run dev`
 
 ---
 
