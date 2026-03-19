@@ -63,6 +63,10 @@ function LoggedInPage({ onLogout }) {
     }
   };
 
+  const deleteSession = (id) => {
+    setSessions(sessions.filter((session) => session.id !== id));
+  };
+
   const handleAddSession = async (e) => {
     e.preventDefault();
     if (!newSessionName || !newSessionFile) {
@@ -136,6 +140,7 @@ function LoggedInPage({ onLogout }) {
                   📄
                 </a>
                 <button onClick={() => setPopupSession(session)}>Start Learning</button>
+                <button onClick={() => deleteSession(session.id)}>Delete</button>
               </div>
             </div>
           ))}

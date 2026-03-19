@@ -12,7 +12,7 @@ const Demo_questions = [
 export default function Popup({ session, onClose }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [userAnswers, setUserAnswers] = useState({});
 
   useEffect(() => {
     if (session && Array.isArray(session.questions) && session.questions.length > 0) {
@@ -26,7 +26,7 @@ export default function Popup({ session, onClose }) {
     }
     
     setCurrentIndex(0);
-    setSelectedOption(null);
+    setUserAnswers({});
   }, [session]);
 
   
@@ -37,27 +37,25 @@ export default function Popup({ session, onClose }) {
   const currentQuestion = questions[currentIndex];
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option); 
+    setUserAnswers({ ...userAnswers, [currentIndex]: option });
   };
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      setSelectedOption(null); 
     }
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      setSelectedOption(null); 
     }
   };
 
   const getOptionClass = (option) => {
     if (!currentQuestion) return "popup-option"; 
-    if (option === currentQuestion.answer) return selectedOption === option ? "popup-option correct" : "popup-option correct-neutral";
-    if (option === selectedOption && option !== currentQuestion.answer)
+    if (option === currentQuestion.answer) return userAnswers[currentIndex] === option ? "popup-option correct" : "popup-option correct-neutral";
+    if (option === userAnswers[currentIndex] && option !== currentQuestion.answer)
       return "popup-option incorrect";
     return "popup-option";
   };
@@ -79,10 +77,10 @@ export default function Popup({ session, onClose }) {
                   onClick={() => handleOptionClick(opt)}
                 >
                   {opt}
-                  {opt === currentQuestion.answer && selectedOption === opt && (
+                  {opt === currentQuestion.answer && userAnswers[currentIndex] === opt && (
                     <span className="checkmark">✔</span>
                   )}
-                  {opt === selectedOption && opt !== currentQuestion.answer && (
+                  {userAnswers[currentIndex] === opt && opt !== currentQuestion.answer && (
                     <span className="crossmark">❌</span>
                   )}
                 </li>
