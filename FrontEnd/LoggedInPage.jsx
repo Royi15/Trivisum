@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./LoggedInPage.css";
 import Popup from "./Popup";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist/legacy/build/pdf";
@@ -11,6 +11,8 @@ function LoggedInPage({ onLogout }) {
   const [newSessionFile, setNewSessionFile] = useState(null);
   const [popupSession, setPopupSession] = useState(null);
   const [loading, setLoading] = useState(false); 
+  const [difficulty, setDifficulty] = useState("Medium");
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -40,7 +42,7 @@ function LoggedInPage({ onLogout }) {
       const res = await fetch("http://localhost:5174/generate-questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ summaryText: pdfText }),
+        body: JSON.stringify({ summaryText: pdfText, difficulty: difficulty }),
       });
 
       const data = await res.json();
@@ -79,7 +81,7 @@ function LoggedInPage({ onLogout }) {
 
     const newSession = {
       id: Date.now(),
-      name: newSessionName,
+      name: `${newSessionName} (${difficulty})`,
       file: newSessionFile,
       questions: Array.isArray(questions) ? questions : [],
     };
@@ -87,6 +89,9 @@ function LoggedInPage({ onLogout }) {
     setSessions([...sessions, newSession]);
     setNewSessionName("");
     setNewSessionFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ""; 
+    }
     setLoading(false); 
   };
 
@@ -108,7 +113,16 @@ function LoggedInPage({ onLogout }) {
             value={newSessionName}
             onChange={(e) => setNewSessionName(e.target.value)}
           />
-          <input type="file" accept="application/pdf" onChange={handleFileChange} />
+          <input type="file" accept="application/pdf" onChange={handleFileChange} ref={fileInputRef} />
+          <select 
+            value={difficulty} 
+            onChange={(e) => setDifficulty(e.target.value)}
+            className="difficulty-select"
+          >
+            <option value="Easy">Level: Easy 😊</option>
+            <option value="Medium">Level: Medium 😐</option>
+            <option value="Hard">Level: Hard 🤯</option>
+          </select>
           <button type="submit" disabled={loading}>
             {loading ? <div className="spinner"></div> : "Add Session"}
           </button>

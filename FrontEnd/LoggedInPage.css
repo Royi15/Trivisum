@@ -24,8 +24,8 @@
 }
 
 .spinner {
-  border: 3px solid #f3f3f3; /* צבע רקע */
-  border-top: 3px solid #3498db; /* צבע החלק המסתובב */
+  border: 3px solid #f3f3f3; 
+  border-top: 3px solid #3498db; 
   border-radius: 50%;
   width: 18px;
   height: 18px;
@@ -37,4 +37,16 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.difficulty-select {
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 0 10px; 
+  font-family: inherit;
+}
+
+.difficulty-select:focus {
+  outline: none;
 }

@@ -17,7 +17,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.post("/generate-questions", async (req, res) => {
   try {
-    const { summaryText } = req.body;
+    const { summaryText, difficulty } = req.body;
 
     if (!summaryText) {
       return res.status(400).json({ error: "No summary text provided" });
@@ -25,11 +25,19 @@ app.post("/generate-questions", async (req, res) => {
 
     const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
 
+    const difficultyDefinitions = {
+      Easy: "Focus on basic facts and explicit information mentioned directly in the text. Suitable for initial understanding.",
+      Medium: "Focus on identifying relationships between different parts of the text and simple logical inferences.",
+      Hard: "Focus on deep analysis, complex concepts, and challenging synthesis of information requiring high-level reasoning."
+    };
+
     const prompt = `
     ${summaryText}
 
     make questions in hebrew based on the text above. 
     Make as many questions as needed to cover the text well. 
+    Difficulty Level: ${difficulty}
+    Difficulty Guidelines: ${difficultyDefinitions[difficulty] || difficultyDefinitions.Medium}
     Also write 4 options for each question and mark the correct answer.
     Also write a short explanation for the correct answer.
     Return in JSON format like this and only this, don't type any other text except the JSON:
@@ -37,7 +45,7 @@ app.post("/generate-questions", async (req, res) => {
       {
         "question": "question here",
         "options": ["option1", "option2", "option3", "option4"],
-        "answer": "right option here"
+        "answer": "right option here",
         "explanation": "short explanation here"
       }
     ]
