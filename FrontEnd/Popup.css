@@ -64,6 +64,10 @@
   transition: all 0.2s ease;
 }
 
+.popup-option:hover {
+  transform: scale(1.04);
+}
+
 
 .popup-option.correct {
   background-color: #d4edda; 
@@ -107,6 +111,13 @@
   background-color: #007bff;
   color: white;
   cursor: pointer;
+  outline: none !important;      
+  box-shadow: none !important;  
+  -webkit-tap-highlight-color: transparent;
+}
+
+.popup-navigation button:hover {
+   transform: scale(1.2);
 }
 
 .popup-navigation button:disabled {
@@ -117,12 +128,26 @@
 
 .popup-close-btn {
   margin-top: 20px;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border: none;
   border-radius: 6px;
   background-color: #ff4d4d;
   color: white;
   cursor: pointer;
+  margin: 0 auto;
+  outline: none !important;      
+  box-shadow: none !important;  
+  -webkit-tap-highlight-color: transparent;
+}
+
+.popup-close-btn:hover{
+   transform: scale(1.2);
+}
+
+.popup-close-btn:active {
+  transform: scale(0.9);
+  outline: none !important;
+  border: none !important;
 }
 
 
@@ -131,3 +156,43 @@
   font-style: italic;
 }
 
+.popup-footer {
+  margin-top: 30px; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  position: relative; 
+  width: 100%;
+}
+
+.popup-explanation-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem; 
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  right: 0; 
+  outline: none !important;      
+  box-shadow: none !important;   
+  background: transparent !important; 
+  -webkit-tap-highlight-color: transparent; 
+}
+
+.popup-explanation-btn:hover {
+  transform: scale(1.2); 
+  filter: drop-shadow(0 0 8px rgba(255, 235, 59, 0.8)); 
+}
+
+.popup-explanation-btn:active {
+  transform: scale(0.9); 
+  outline: none !important;
+  border: none !important;
+}
+
+
+.popup-explanation-btn:active {
+  transform: scale(0.9);
+  outline: none !important;
+  border: none !important;
+}

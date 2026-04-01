@@ -31,12 +31,14 @@ app.post("/generate-questions", async (req, res) => {
     make questions in hebrew based on the text above. 
     Make as many questions as needed to cover the text well. 
     Also write 4 options for each question and mark the correct answer.
+    Also write a short explanation for the correct answer.
     Return in JSON format like this and only this, don't type any other text except the JSON:
     [
       {
         "question": "question here",
         "options": ["option1", "option2", "option3", "option4"],
         "answer": "right option here"
+        "explanation": "short explanation here"
       }
     ]
     `;

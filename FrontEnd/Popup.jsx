@@ -6,6 +6,7 @@ const Demo_questions = [
     question: "**THIS IS A DEMO QUESTION - NO RESPONSE FROM API** What is the capital of France?",
     options: ["Berlin", "Madrid", "Paris", "Rome"],
     answer: "Paris",
+    explanation: "Paris is the capital city of France."
   },
 ];
 
@@ -13,6 +14,7 @@ export default function Popup({ session, onClose }) {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({});
+  const [showExplanation, setShowExplanation] = useState(false);
 
   useEffect(() => {
     if (session && Array.isArray(session.questions) && session.questions.length > 0) {
@@ -42,12 +44,14 @@ export default function Popup({ session, onClose }) {
 
   const handleNext = () => {
     if (currentIndex < questions.length - 1) {
+      setShowExplanation(false);
       setCurrentIndex(currentIndex + 1);
     }
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
+      setShowExplanation(false);
       setCurrentIndex(currentIndex - 1);
     }
   };
@@ -105,10 +109,25 @@ export default function Popup({ session, onClose }) {
         ) : (
           <p className="popup-no-questions">No questions available.</p>
         )}
-
-        <button onClick={onClose} className="popup-close-btn">
+        <div className="popup-footer">
+        <button onClick={() => {
+          onClose();
+          setShowExplanation(false);
+        }} className="popup-close-btn">
           Close
         </button>
+        <button onClick={() => setShowExplanation(!showExplanation)} className="popup-explanation-btn">
+          💡
+        </button>
+        </div>
+        {showExplanation && (
+          <div className="popup-explanation-drawer">
+            <div className="popup-explanation-content">
+              <strong>Explanation:</strong>
+              <p>{currentQuestion?.explanation || "No explanation available."}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
