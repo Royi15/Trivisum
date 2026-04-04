@@ -81,7 +81,8 @@ function LoggedInPage({ onLogout }) {
 
     const newSession = {
       id: Date.now(),
-      name: `${newSessionName} (${difficulty})`,
+      name: `${newSessionName} `,
+      difficulty: difficulty,
       file: newSessionFile,
       questions: Array.isArray(questions) ? questions : [],
     };
@@ -98,66 +99,117 @@ function LoggedInPage({ onLogout }) {
   return (
     <div className="logged-in-page">
       <div className="top-bar">
+        <div className="logo-section">
+          <span className="logo-text">TRIVISUM</span>
+        </div>
         <button className="logout-btn" onClick={onLogout}>
-          Logout
+          Logout <span>🚪</span>
         </button>
       </div>
 
       <div className="content">
-        <h2>My Learning Sessions</h2>
+        <h1 className="page-title">My Learning Sessions</h1>
 
-        <form onSubmit={handleAddSession} className="add-session-form">
-          <input
-            type="text"
-            placeholder="Session name"
-            value={newSessionName}
-            onChange={(e) => setNewSessionName(e.target.value)}
-          />
-          <input type="file" accept="application/pdf" onChange={handleFileChange} ref={fileInputRef} />
-          <select 
-            value={difficulty} 
-            onChange={(e) => setDifficulty(e.target.value)}
-            className="difficulty-select"
-          >
-            <option value="Easy">Level: Easy 😊</option>
-            <option value="Medium">Level: Medium 😐</option>
-            <option value="Hard">Level: Hard 🤯</option>
-          </select>
-          <button type="submit" disabled={loading}>
-            {loading ? <div className="spinner"></div> : "Add Session"}
-          </button>
-        </form>
-
-        <div className="sessions-list">
-          {sessions.map((session) => (
-            <div
-              key={session.id}
-              className="session-card"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginBottom: "10px",
-                padding: "10px",
-                border: "1px solid #ccc",
-                borderRadius: "6px",
-              }}
-            >
-              <span>{session.name}</span>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <a
-                  href={URL.createObjectURL(session.file)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "none", color: "white", fontWeight: "bold" }}
-                >
-                  📄
-                </a>
-                <button onClick={() => setPopupSession(session)}>Start Learning</button>
-                <button onClick={() => deleteSession(session.id)}>Delete</button>
+        <div className="add-session-container">
+          <h3>Add New Session</h3>
+          <form onSubmit={handleAddSession} className="add-session-form">
+            <div className="input-group">
+              <label>Session Name</label>
+              <div className="input-with-icon">
+                <span className="input-icon">📑</span>
+                <input
+                  type="text"
+                  placeholder="Enter session name"
+                  value={newSessionName}
+                  onChange={(e) => setNewSessionName(e.target.value)}
+                />
               </div>
             </div>
-          ))}
+
+            <div className="input-group">
+              <label>Upload PDF Material</label>
+              <div className="upload-wrapper">
+                <label className="upload-label">
+                  ☁️ {newSessionFile ? newSessionFile.name : "Upload PDF Material"}
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleFileChange}
+                    ref={fileInputRef}
+                    hidden
+                  />
+                </label>
+                <div className="pdf-badge">
+                   <span style={{color: "white"}}>PDF</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label>Difficulty Level</label>
+              <select
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                className="difficulty-select"
+              >
+                <option value="Easy">Easy 😊</option>
+                <option value="Medium">Medium 😐</option>
+                <option value="Hard">Hard 🤯</option>
+              </select>
+            </div>
+
+            <button type="submit" className="add-submit-btn" disabled={loading}>
+              {loading ? <div className="spinner"></div> : "+ Add Session"}
+            </button>
+          </form>
+        </div>
+
+        <div className="current-sessions-section">
+          <h3>Current Sessions</h3>
+          <div className="sessions-list">
+            {sessions.map((session) => (
+            
+              <div key={session.id} className="session-card">
+                
+                <div className="session-info">
+                  <h4>{session.name}</h4>
+                  <p className="session-meta">
+                    {session.difficulty}
+                    {session.difficulty === "Easy" && " 😊"}
+                    {session.difficulty === "Medium" && " 😐"}
+                    {session.difficulty === "Hard" && " 🤯"}
+                  </p>
+                </div>
+                <div className= "session-controls">  
+                <div className="session-file-indicator">
+                  <a
+                    href={URL.createObjectURL(session.file)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pdf-document-icon"
+                  >
+                    📄 <span>PDF</span>
+                  </a>
+                </div>
+
+                <div className="session-actions">
+                  <button className="start-btn" onClick={() => setPopupSession(session)}>
+                    Start Learning
+                  </button>
+                  <button className="delete-btn" onClick={() => deleteSession(session.id)}>
+                    🗑 Delete
+                  </button>
+                </div>
+                </div>
+
+              </div>
+            ))}
+            
+            {/* Show empty state if no sessions */}
+            {sessions.length === 0 && (
+              <p style={{ color: "#a0a0a8", marginTop: "20px" }}>No sessions yet. Add one above!</p>
+            )}
+          </div>
         </div>
 
         <Popup session={popupSession} onClose={() => setPopupSession(null)} />

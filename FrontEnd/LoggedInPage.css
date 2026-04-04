@@ -1,52 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .logged-in-page {
+  background: radial-gradient(circle at top right, #38312b, #1f2023);
+  min-height: 100vh;
+  width: 100%; 
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding-bottom: 50px;
+  box-sizing: border-box; 
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: transparent;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logout-btn {
+  background-color: #d86262;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #c05252;
+}
+
+/* Content Area */
+.content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* Add Session Section */
+.add-session-container {
+  background-color: #27282f;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.add-session-container h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.add-session-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  padding: 20px;
-  box-sizing: border-box;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
 }
 
-.logged-in-page .top-bar {
+.input-group label {
+  font-size: 0.85rem;
+  color: #a0a0a8;
+}
+
+.input-with-icon {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center;            
+  align-items: center;
+  background-color: #1e1f24;
+  border: 1px solid #3f3f4e;
+  border-radius: 8px;
+  padding: 0 10px;
 }
 
-.logged-in-page .logout-btn {
-  padding: 10px 20px;
-  font-size: 1.2rem;
+.input-with-icon input {
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  background-color: #f44336;
   color: white;
+  padding: 12px 10px;
+  width: 100%;
+  outline: none;
+}
+
+.upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-label {
+  background-color: #4a4b56;
+  color: white;
+  padding: 11px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.upload-label:hover {
+  background-color: #585966;
+}
+
+.pdf-badge {
+  background-color: #31323a;
+  border: 1px solid #e55b5b;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.difficulty-select {
+  background-color: #1e1f24;
+  color: white;
+  border: 1px solid #3f3f4e;
+  padding: 12px;
+  border-radius: 8px;
+  outline: none;
   cursor: pointer;
 }
 
+.add-submit-btn {
+  background-color: #61e8cd;
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 44px; 
+  transition: background 0.2s;
+  min-width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-submit-btn:hover {
+  background-color: #4cd4b9;
+}
+
+/* Current Sessions List */
+.current-sessions-section h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column; 
+  gap: 15px;
+}
+
+.session-card {
+  background-color: #27282f;
+  border: 1px solid #3f3f4e;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.session-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.session-info {
+  flex: 1; 
+}
+
+.session-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.session-meta {
+  margin: 0;
+  font-size: 1rem;
+  color: #a0a0a8;
+}
+
+.session-meta .divider {
+  margin: 0 5px;
+}
+
+
+.session-controls {
+  display: flex;
+  align-items: center;
+  gap: 30px; 
+}
+
+.session-file-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.pdf-document-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #e4bb7e;
+  font-size: 2.5rem; 
+  padding-bottom: 5px;
+}
+
+.pdf-document-icon span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.session-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+
+.start-btn {
+  background-color: #61e8cd;
+  color: #1a1a1a;
+  border: none;
+  padding: 12px 20px; 
+  border-radius: 6px;
+  font-size: 1rem; 
+  font-weight: 600;
+  cursor: pointer;
+  width: 160px; 
+  transition: background 0.2s;
+}
+
+.start-btn:hover {
+  background-color: #4cd4b9;
+}
+
+.delete-btn {
+ background-color: #3b282c;
+  color: #d86262;
+  border: 1px solid #d86262;
+  padding: 10px 20px; 
+  border-radius: 6px;
+  font-size: 1rem; 
+  font-weight: 600;
+  cursor: pointer;
+  width: 160px; 
+  transition: background 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #d86262;
+  color: white;
+}
+
+/* Loading Spinner */
 .spinner {
-  border: 3px solid #f3f3f3; 
-  border-top: 3px solid #3498db; 
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top: 3px solid #1a1a1a;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   animation: spin 1s linear infinite;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.difficulty-select {
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 0 10px; 
-  font-family: inherit;
-}
-
-.difficulty-select:focus {
-  outline: none;
 }
