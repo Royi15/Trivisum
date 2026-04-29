@@ -12,6 +12,7 @@ function LoggedInPage({ onLogout }) {
   const [popupSession, setPopupSession] = useState(null);
   const [loading, setLoading] = useState(false); 
   const [difficulty, setDifficulty] = useState("Medium");
+  const [language, setLanguage] = useState("hebrew");
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
@@ -42,7 +43,7 @@ function LoggedInPage({ onLogout }) {
       const res = await fetch("http://localhost:5174/generate-questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ summaryText: pdfText, difficulty: difficulty }),
+        body: JSON.stringify({ summaryText: pdfText, difficulty: difficulty, language: language }),
       });
 
       const data = await res.json();
@@ -83,6 +84,7 @@ function LoggedInPage({ onLogout }) {
       id: Date.now(),
       name: `${newSessionName} `,
       difficulty: difficulty,
+      language: language,
       file: newSessionFile,
       questions: Array.isArray(questions) ? questions : [],
     };
@@ -145,6 +147,7 @@ function LoggedInPage({ onLogout }) {
               </div>
             </div>
 
+            {/* Difficulty Level */}
             <div className="input-group">
               <label>Difficulty Level</label>
               <select
@@ -156,6 +159,18 @@ function LoggedInPage({ onLogout }) {
                 <option value="Medium">Medium 😐</option>
                 <option value="Hard">Hard 🤯</option>
               </select>
+              </div>
+              {/* Language */}
+              <div className="language-select">
+                <label>Language</label>
+                <select 
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="language-dropdown"
+                >
+                  <option value="hebrew">Hebrew</option>
+                  <option value="english">English</option>
+                </select>
             </div>
 
             <button type="submit" className="add-submit-btn" disabled={loading}>
@@ -177,7 +192,9 @@ function LoggedInPage({ onLogout }) {
                     {session.difficulty}
                     {session.difficulty === "Easy" && " 😊"}
                     {session.difficulty === "Medium" && " 😐"}
-                    {session.difficulty === "Hard" && " 🤯"}
+                    {session.difficulty === "Hard" && " 🤯"} 
+                    <span className="divider">|</span>
+                    {session.language === "hebrew" ? "Hebrew" : "English"}
                   </p>
                 </div>
                 <div className= "session-controls">  

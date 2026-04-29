@@ -17,7 +17,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.post("/generate-questions", async (req, res) => {
   try {
-    const { summaryText, difficulty } = req.body;
+    const { summaryText, difficulty, language } = req.body;
 
     if (!summaryText) {
       return res.status(400).json({ error: "No summary text provided" });
@@ -34,7 +34,7 @@ app.post("/generate-questions", async (req, res) => {
     const prompt = `
     ${summaryText}
 
-    make questions in hebrew based on the text above. 
+    make questions in ${language} based on the text above. 
     Make as many questions as needed to cover the text well. 
     Difficulty Level: ${difficulty}
     Difficulty Guidelines: ${difficultyDefinitions[difficulty] || difficultyDefinitions.Medium}

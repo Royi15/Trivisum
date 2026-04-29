@@ -90,7 +90,7 @@
   min-width: 200px;
 }
 
-.input-group label {
+.input-group label, .language-select label {
   font-size: 0.85rem;
   color: #a0a0a8;
 }
@@ -172,6 +172,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-top: 10px;
 }
 
 .add-submit-btn:hover {
@@ -311,4 +313,24 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.language-select {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+
+.language-dropdown {
+ background-color: #1e1f24;
+  color: white;
+  border: 1px solid #3f3f4e;
+  padding: 12px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
 }
