@@ -2,7 +2,7 @@
 
 **Trivisum** is an intelligent learning platform powered by Artificial Intelligence. It allows users to upload study materials in **PDF** format and automatically generates multiple-choice practice quizzes to help reinforce learning.
 
-The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analyze text and produce relevant questions in Hebrew.
+The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analyze text and produce relevant questions.
 
 ![Trivisum Home Page](FrontEnd/assets/HomePage.png)
 ---
