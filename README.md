@@ -4,6 +4,7 @@
 
 The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analyze text and produce relevant questions in Hebrew.
 
+![Trivisum Home Page](FrontEnd/assets/HomePage.png)
 ---
 
 ## 🚀 Key Features
@@ -13,6 +14,13 @@ The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analy
 * **Text Analysis:** Client-side text extraction using `pdfjs-dist`.
 * **AI Question Generator:** Integration with Google Gemini API to generate questions, options, and correct answers in JSON format.
 * **Session Management:** Users can create learning sessions, saving the file and generated questions.
+* **Difficulty Levels:** Support for Easy, Medium, and Hard difficulty settings to match the user's knowledge level.
+* **Language Support:** Ability to generate quizzes in both English and Hebrew.
+* **Interactive Results:** A dedicated results screen with score tracking and performance breakdown.
+
+| Log In | Questions | Results |
+|--------|-----------|---------|
+| ![Log In Page](FrontEnd/assets/Log-In-Page.png) | ![Questions Popup](FrontEnd/assets/QuestionsPopUp.png) | ![Results Popup](FrontEnd/assets/ResultsPopUp.png) |
 
 ---
 
