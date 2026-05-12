@@ -196,3 +196,159 @@
   outline: none !important;
   border: none !important;
 }
+
+
+.popup-container {
+  position: relative; 
+}
+
+.results-close-x {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.results-close-x:hover {
+  color: #333;
+  transform: scale(1.1);
+}
+
+.popup-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.popup-results-title {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Circular Progress Bar */
+.circular-progress-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+}
+
+.circular-progress {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #e6e6e6;
+  stroke-width: 8;
+}
+
+.circle-fg {
+  fill: none;
+  stroke: #28a745;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s ease-out;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.score-value {
+  font-size: 2rem;
+}
+
+/* Text and Stats */
+.results-message {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.results-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 250px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.stat-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.stat-icon.correct {
+  color: #28a745;
+  background-color: #e6f4ea;
+}
+
+.stat-icon.incorrect {
+  color: #dc3545;
+  background-color: #fce8e6;
+}
+
+/* Action Buttons */
+.results-actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.back-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.retry-btn {
+  background-color: #6c757d;
+  color: white;
+}
