@@ -237,8 +237,8 @@
 /* Circular Progress Bar */
 .circular-progress-container {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   margin-bottom: 20px;
 }
 
@@ -273,7 +273,7 @@
 }
 
 .score-value {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 /* Text and Stats */
