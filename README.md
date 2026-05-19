@@ -10,7 +10,7 @@ The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analy
 ## 🚀 Key Features
 
 * **Clean UI:** A simple and intuitive landing page with a logo and session management.
-* **PDF Upload:** Support for uploading PDF documents for analysis.
+* **PDF Upload:** Support for uploading PDF documents.
 * **Text Analysis:** Client-side text extraction using `pdfjs-dist`.
 * **AI Question Generator:** Integration with Google Gemini API to generate questions, options, and correct answers in JSON format.
 * **Session Management:** Users can create learning sessions, saving the file and generated questions.
