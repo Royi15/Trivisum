@@ -43,8 +43,8 @@ The system utilizes the **Google Gemini 2.5 Flash Lite** language model to analy
 ### 1. Backend Setup
 1. Navigate to the folder: `cd BackEnd`
 2. Install dependencies: `npm install`
-3. Create a `.env` file and add: `GEMINI_API_KEY=YOUR_KEY`
-4. Start the server: `node server.js` (Runs on port 5174.0).
+3. Create a `.env` file and add: `GEMINI_2.5_Flash_Lite_API_KEY=YOUR_KEY` (*NOTE*: you can get a free API from `Google AI Studio`)
+4. Start the server: `node server.js` (Runs on port 5174).
 
 ### 2. Frontend Setup
 1. Open a **new** terminal in the main project folder (`Trivisum`).
